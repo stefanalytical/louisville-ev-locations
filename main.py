@@ -1,6 +1,6 @@
 import pandas as pd
 
-df = pd.read_csv (r'/Users/stefanvuleta/louisville_ev/louisville_evs.csv')
+df = pd.read_csv ('louisville_evs.csv')
 print(df)
 
 df.drop(['OBJECTID', 'FID_EV_Charging_Suggestions', 'Comments', 'Location', 'Date', 'CreationDate', 'COUNDIST'], axis = 1, inplace = True)
