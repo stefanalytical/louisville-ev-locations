@@ -1,5 +1,6 @@
 import pandas as pd
 import re
+import os
 
 df = pd.read_csv ('louisville_evs.csv')
 df.drop(['OBJECTID', 'FID_EV_Charging_Suggestions', 'Comments', 'Location', 'Date', 'CreationDate', 'COUNDIST'], axis = 1, inplace = True)
@@ -10,7 +11,6 @@ fixed_columns = {
 }
 df.rename(columns = fixed_columns, inplace = True)
 df = df[df.Num_Votes != 0]
-print(df)
 
 # Scrape data from html table
 url = 'https://localistica.com/usa/ky/louisville/zipcodes/highest-household-income-zipcodes/'
@@ -32,16 +32,25 @@ df2.rename(columns = fixed_columns, inplace = True)
 
 # Drop first row with incorrect headings
 df2 = df2.drop(df2.index[0])
-print(df2)
 
 # Convert data types for both DataFrames
 df = df.astype({"Zip_Code": str})
 df2 = df2.astype({"Population": int, "Age": float})
 df2["AVG_Income"] = df2["AVG_Income"].replace("[$,]", "", regex=True).astype(float)
 
-dataTypeSeries = df.dtypes
-print(dataTypeSeries)
+#dataTypeSeries = df.dtypes
+#print(dataTypeSeries)
+#dataTypeSeries2 = df2.dtypes
+#print(dataTypeSeries2)
 
-dataTypeSeries2 = df2.dtypes
-print(dataTypeSeries2)
+df3 = pd.merge(df, df2, on='Zip_Code')
+print(df3)
 
+# Make sure the clean data folder exists
+new_csv_folder = ('clean_data/new_csv')
+check_folder = os.path.isdir(new_csv_folder)
+if not check_folder:
+    os.makedirs(new_csv_folder)
+
+# Export cleaned pandas DataFrame to CSV file
+df3.to_csv(('clean_data/new_csv/new_louisville_evs.csv'), index=False)
