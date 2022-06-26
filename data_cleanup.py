@@ -38,19 +38,15 @@ df = df.astype({"Zip_Code": str})
 df2 = df2.astype({"Population_Per_Zip": int, "Age_Per_Zip": float})
 df2["Income_Per_Zip"] = df2["Income_Per_Zip"].replace("[$,]", "", regex=True).astype(float)
 
-#dataTypeSeries = df.dtypes
-#print(dataTypeSeries)
-#dataTypeSeries2 = df2.dtypes
-#print(dataTypeSeries2)
-
+# Created a third DataFrame by merging df and df2 based on the Zip_Code column
 df3 = pd.merge(df, df2, on='Zip_Code')
 print(df3)
 
 # Make sure the clean data folder exists
-new_csv_folder = ('clean_data/new_csv')
+new_csv_folder = ('clean_data')
 check_folder = os.path.isdir(new_csv_folder)
 if not check_folder:
     os.makedirs(new_csv_folder)
 
 # Export cleaned Pandas DataFrame to CSV file
-df3.to_csv(('clean_data/new_csv/new_louisville_evs.csv'), index=False)
+df3.to_csv(('clean_data/cleaned_louisville_evs.csv'), index=False)
