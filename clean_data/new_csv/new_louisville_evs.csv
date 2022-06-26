@@ -1,4 +1,4 @@
-Name,Num_Votes,Zip_Code,Longitude,Latitude,Population,Age,AVG_Income
+Name,Num_Votes,Zip_Code,Longitude,Latitude,Population_Per_Zip,Age_Per_Zip,Income_Per_Zip
 Walmart Okolona,1,40229,-85.66449424,38.08876795,37629,34.8,44068.0
 Preston Crossings,1,40229,-85.67026052,38.09241674,37629,34.8,44068.0
 McNeely Lake Park,1,40229,-85.63663845,38.10600095,37629,34.8,44068.0

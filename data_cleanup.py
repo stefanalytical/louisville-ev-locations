@@ -23,9 +23,9 @@ df2 = scraper[0]
 df2.drop([1, 3], axis = 1, inplace = True)
 fixed_columns = {
     0:'Zip_Code',
-    2:'Population',
-    4:'Age',
-    5:'AVG_Income',
+    2:'Population_Per_Zip',
+    4:'Age_Per_Zip',
+    5:'Income_Per_Zip',
 }
 
 df2.rename(columns = fixed_columns, inplace = True)
@@ -35,8 +35,8 @@ df2 = df2.drop(df2.index[0])
 
 # Convert data types for both DataFrames
 df = df.astype({"Zip_Code": str})
-df2 = df2.astype({"Population": int, "Age": float})
-df2["AVG_Income"] = df2["AVG_Income"].replace("[$,]", "", regex=True).astype(float)
+df2 = df2.astype({"Population_Per_Zip": int, "Age_Per_Zip": float})
+df2["Income_Per_Zip"] = df2["Income_Per_Zip"].replace("[$,]", "", regex=True).astype(float)
 
 #dataTypeSeries = df.dtypes
 #print(dataTypeSeries)
