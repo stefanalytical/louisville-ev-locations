@@ -12,6 +12,10 @@ fixed_columns = {
 df.rename(columns = fixed_columns, inplace = True)
 df = df[df.Num_Votes != 0]
 
+# Rename certain values in 'Name' column to match rest of data
+df['Name'] = df['Name'].replace(['RIVERVIEW PARK', 'KROGER', 'BECKLEY PARK', 'Beckley Creek Park, Egg Lawn', 'EV Charging Suggestion: St.Matthews/ Eline Library'],
+                                ['Riverview Park', 'Kroger', 'Beckley Park', 'Egg Lawn', 'Eline Library'])
+
 # Scrape data from html table
 url = 'https://localistica.com/usa/ky/louisville/zipcodes/highest-household-income-zipcodes/'
 scraper = pd.read_html(url)
@@ -20,10 +24,11 @@ scraper = pd.read_html(url)
 df2 = scraper[0]
 
 # Drop and rename columns
-df2.drop([1, 3], axis = 1, inplace = True)
+df2.drop([1], axis = 1, inplace = True)
 fixed_columns = {
     0:'Zip_Code',
     2:'Population_Per_Zip',
+    3:'Zip_Growth_Percent',
     4:'Age_Per_Zip',
     5:'Income_Per_Zip',
 }
@@ -37,6 +42,7 @@ df2 = df2.drop(df2.index[0])
 df = df.astype({"Zip_Code": str})
 df2 = df2.astype({"Population_Per_Zip": int, "Age_Per_Zip": float})
 df2["Income_Per_Zip"] = df2["Income_Per_Zip"].replace("[$,]", "", regex=True).astype(float)
+df2["Zip_Growth_Percent"] = df2["Zip_Growth_Percent"].str.rstrip("%").astype("float") / 100
 
 # Created a third DataFrame by merging df and df2 based on the Zip_Code column
 df3 = pd.merge(df, df2, on='Zip_Code')
