@@ -34,9 +34,6 @@ fixed_columns = {
 }
 df2.rename(columns = fixed_columns, inplace = True)
 
-# Drop first row with incorrect headings
-df2 = df2.drop(df2.index[0])
-
 # Scrape data from html table
 url2 = 'http://zipatlas.com/us/ky/louisville/zip-code-comparison/median-household-income.html'
 scraper2 = pd.read_html(url2)
@@ -53,6 +50,7 @@ fixed_columns = {
 df3.rename(columns = fixed_columns, inplace = True)
 
 # Drop first row with incorrect headings
+df2 = df2.drop(df2.index[0])
 df3 = df3.drop(df3.index[0])
 
 # Remove hashtag and comma to convert str to int
@@ -69,15 +67,13 @@ df3 = df3.astype({"Zip_National_Rank": int})
 # Created a fourth DataFrame by merging df, df2, df3 based on the Zip_Code column
 final_df = pd.merge(pd.merge(df, df2, on='Zip_Code'), df3, on='Zip_Code')
 
-# Create calculated column to find total income per zip code
+# Create calculated column and convert data type and supress scientific notation
 final_df['Zip_Total_Income'] = final_df.Zip_Population * final_df.Zip_Income
-
-# Convert data type to integer to supress scientific notation
 final_df = final_df.astype({"Zip_Total_Income": int})
 final_df = final_df.astype({"Zip_Income": int})
 
 # Define function filter to categorize int data to str
-def filter(x):
+def filter1(x):
     if x <= 20000:
         return 'Low Income'
     if (x > 20000 and x <= 50000):
@@ -85,11 +81,7 @@ def filter(x):
     if x > 50000:
         return 'High Income'
 
-# Create new column and apply filter to 'Income_Per_Zip' column 
-final_df['Income_Group'] = final_df['Zip_Income'].apply(filter)
-
-# Define function filter to categorize int data to str
-def filter(x):
+def filter2(x):
     if x <= 35:
         return 'Younger'
     if (x > 35 and x <= 40):
@@ -97,11 +89,7 @@ def filter(x):
     if x > 40:
         return 'Older'
 
-# Create new column and apply filter to 'Age_Per_Zip' column 
-final_df['Age_Group'] = final_df['Zip_Age'].apply(filter)
-
-# Define function filter to categorize int data to str
-def filter(x):
+def filter3(x):
     if x < 1000:
         return 'Tiny'
     if (x >= 1000 and x < 15000):
@@ -111,8 +99,10 @@ def filter(x):
     if x >= 30000:
         return 'Large'
 
-# Create new column and apply filter to 'Income_Per_Zip' column 
-final_df['Zip_Population_Size'] = final_df['Zip_Population'].apply(filter)
+# Create new column and apply filters
+final_df['Income_Group'] = final_df['Zip_Income'].apply(filter1)
+final_df['Age_Group'] = final_df['Zip_Age'].apply(filter2)
+final_df['Zip_Population_Size'] = final_df['Zip_Population'].apply(filter3)
 
 print(final_df)
 
