@@ -32,34 +32,49 @@ fixed_columns = {
     4:'Zip_Age',
     5:'Zip_Income',
 }
-
 df2.rename(columns = fixed_columns, inplace = True)
 
 # Drop first row with incorrect headings
 df2 = df2.drop(df2.index[0])
 
-# Convert data types for both DataFrames
+# Scrape data from html table
+url2 = 'http://zipatlas.com/us/ky/louisville/zip-code-comparison/median-household-income.html'
+scraper2 = pd.read_html(url2)
+
+# Get table                                                                                                           
+df3 = scraper2[11]
+df3 = df3[[1, 6]].copy()
+
+# Rename columns to allow merger of DataFrames
+fixed_columns = {
+    1:'Zip_Code',
+    6:'Zip_National_Rank',
+}
+df3.rename(columns = fixed_columns, inplace = True)
+
+# Drop first row with incorrect headings
+df3 = df3.drop(df3.index[0])
+
+# Remove hashtag and comma to convert str to int
+df3['Zip_National_Rank'] = df3['Zip_National_Rank'].map(lambda x: x.lstrip('#'))
+df3['Zip_National_Rank'] = df3['Zip_National_Rank'].str.replace(',', '')
+
+# Convert data types for all DataFrames
 df = df.astype({"Zip_Code": str})
 df2 = df2.astype({"Zip_Population": int, "Zip_Age": float})
 df2["Zip_Income"] = df2["Zip_Income"].replace("[$,]", "", regex=True).astype(float)
 df2["Zip_Growth_Percent"] = df2["Zip_Growth_Percent"].str.rstrip("%").astype("float") / 100
+df3 = df3.astype({"Zip_National_Rank": int})
 
-# Created a third DataFrame by merging df and df2 based on the Zip_Code column
-df3 = pd.merge(df, df2, on='Zip_Code')
-
-# Make sure the clean data folder exists
-new_csv_folder = ('clean_data')
-check_folder = os.path.isdir(new_csv_folder)
-if not check_folder:
-    os.makedirs(new_csv_folder)
-
+# Created a fourth DataFrame by merging df, df2, df3 based on the Zip_Code column
+final_df = pd.merge(pd.merge(df, df2, on='Zip_Code'), df3, on='Zip_Code')
 
 # Create calculated column to find total income per zip code
-df3['Zip_Total_Income'] = df3.Zip_Population * df3.Zip_Income
+final_df['Zip_Total_Income'] = final_df.Zip_Population * final_df.Zip_Income
 
 # Convert data type to integer to supress scientific notation
-df3 = df3.astype({"Zip_Total_Income": int})
-df3 = df3.astype({"Zip_Income": int})
+final_df = final_df.astype({"Zip_Total_Income": int})
+final_df = final_df.astype({"Zip_Income": int})
 
 # Define function filter to categorize int data to str
 def filter(x):
@@ -71,7 +86,7 @@ def filter(x):
         return 'High Income'
 
 # Create new column and apply filter to 'Income_Per_Zip' column 
-df3['Income_Group'] = df3['Zip_Income'].apply(filter)
+final_df['Income_Group'] = final_df['Zip_Income'].apply(filter)
 
 # Define function filter to categorize int data to str
 def filter(x):
@@ -83,7 +98,7 @@ def filter(x):
         return 'Older'
 
 # Create new column and apply filter to 'Age_Per_Zip' column 
-df3['Age_Group'] = df3['Zip_Age'].apply(filter)
+final_df['Age_Group'] = final_df['Zip_Age'].apply(filter)
 
 # Define function filter to categorize int data to str
 def filter(x):
@@ -97,9 +112,15 @@ def filter(x):
         return 'Large'
 
 # Create new column and apply filter to 'Income_Per_Zip' column 
-df3['Zip_Population_Size'] = df3['Zip_Population'].apply(filter)
+final_df['Zip_Population_Size'] = final_df['Zip_Population'].apply(filter)
 
-print(df3)
+print(final_df)
+
+# Make sure the clean data folder exists
+new_csv_folder = ('clean_data')
+check_folder = os.path.isdir(new_csv_folder)
+if not check_folder:
+    os.makedirs(new_csv_folder)
 
 # Export cleaned Pandas DataFrame to CSV file
-df3.to_csv(('clean_data/cleaned_louisville_evs.csv'), index=False)
+final_df.to_csv(('clean_data/cleaned_louisville_evs.csv'), index=False)
