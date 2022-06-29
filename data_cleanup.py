@@ -1,6 +1,7 @@
 import pandas as pd
 import re
 import os
+import numpy as np
 
 df = pd.read_csv ('louisville_evs.csv')
 df.drop(['OBJECTID', 'FID_EV_Charging_Suggestions', 'Comments', 'Location', 'Date', 'CreationDate', 'COUNDIST'], axis = 1, inplace = True)
@@ -16,11 +17,9 @@ df = df[df.Num_Votes != 0]
 df['Name'] = df['Name'].replace(['RIVERVIEW PARK', 'KROGER', 'BECKLEY PARK', 'Beckley Creek Park, Egg Lawn', 'EV Charging Suggestion: St.Matthews/ Eline Library'],
                                 ['Riverview Park', 'Kroger', 'Beckley Park', 'Egg Lawn', 'Eline Library'])
 
-
-
-df['Percentage_of_Total'] = (df['Num_Votes'] / df['Num_Votes'].sum())
-
-
+# Create calculated column to find the number of votes percentage of the total and limit decimal places to 4
+df['Votes_Percentage_of_Total'] = (df['Num_Votes'] / df['Num_Votes'].sum())
+df['Votes_Percentage_of_Total'] = df['Votes_Percentage_of_Total'].round(decimals=4)
 
 # Scrape data from html table
 url = 'https://localistica.com/usa/ky/louisville/zipcodes/highest-household-income-zipcodes/'
@@ -34,7 +33,7 @@ df2.drop([1], axis = 1, inplace = True)
 fixed_columns = {
     0:'Zip_Code',
     2:'Zip_Population',
-    3:'Zip_Growth_Percent',
+    3:'Zip_Growth_Percentage',
     4:'Zip_Age',
     5:'Zip_Income',
 }
@@ -51,7 +50,7 @@ df3 = df3[[1, 6]].copy()
 # Rename columns to allow merger of DataFrames
 fixed_columns = {
     1:'Zip_Code',
-    6:'Zip_National_Rank',
+    6:'Zip_Income_National_Rank',
 }
 df3.rename(columns = fixed_columns, inplace = True)
 
@@ -60,23 +59,23 @@ df2 = df2.drop(df2.index[0])
 df3 = df3.drop(df3.index[0])
 
 # Remove hashtag and comma to convert str to int
-df3['Zip_National_Rank'] = df3['Zip_National_Rank'].map(lambda x: x.lstrip('#'))
-df3['Zip_National_Rank'] = df3['Zip_National_Rank'].str.replace(',', '')
+df3['Zip_Income_National_Rank'] = df3['Zip_Income_National_Rank'].map(lambda x: x.lstrip('#'))
+df3['Zip_Income_National_Rank'] = df3['Zip_Income_National_Rank'].str.replace(',', '')
 
 # Convert data types for all DataFrames
 df = df.astype({"Zip_Code": str})
 df2 = df2.astype({"Zip_Population": int, "Zip_Age": float})
-df2["Zip_Income"] = df2["Zip_Income"].replace("[$,]", "", regex=True).astype(float)
-df2["Zip_Growth_Percent"] = df2["Zip_Growth_Percent"].str.rstrip("%").astype("float") / 100
-df3 = df3.astype({"Zip_National_Rank": int})
+df2['Zip_Income'] = df2['Zip_Income'].replace('[$,]', '', regex=True).astype(float)
+df2['Zip_Growth_Percentage'] = df2['Zip_Growth_Percentage'].str.rstrip('%').astype(float) / 100
+df3 = df3.astype({'Zip_Income_National_Rank': int})
 
 # Created a fourth DataFrame by merging df, df2, df3 based on the Zip_Code column
 final_df = pd.merge(pd.merge(df, df2, on='Zip_Code'), df3, on='Zip_Code')
 
 # Create calculated column and convert data type and supress scientific notation
 final_df['Zip_Total_Income'] = final_df.Zip_Population * final_df.Zip_Income
-final_df = final_df.astype({"Zip_Total_Income": int})
-final_df = final_df.astype({"Zip_Income": int})
+final_df = final_df.astype({'Zip_Total_Income': int})
+final_df = final_df.astype({'Zip_Income': int})
 
 # Define function filter to categorize int data to str
 def filter1(x):
@@ -109,6 +108,12 @@ def filter3(x):
 final_df['Income_Group'] = final_df['Zip_Income'].apply(filter1)
 final_df['Age_Group'] = final_df['Zip_Age'].apply(filter2)
 final_df['Zip_Population_Size'] = final_df['Zip_Population'].apply(filter3)
+
+final_df = final_df[['Name', 'Zip_Code', 'Num_Votes', 'Votes_Percentage_of_Total', 
+                    'Longitude', 'Latitude', 'Zip_Age', 'Zip_Population', 'Zip_Growth_Percentage', 
+                    'Zip_Income', 'Zip_Income_National_Rank', 'Zip_Total_Income', 'Income_Group', 
+                    'Age_Group', 'Zip_Population_Size'
+                    ]]
 
 print(final_df)
 
