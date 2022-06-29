@@ -22,8 +22,6 @@ df['Percentage_of_Total'] = (df['Num_Votes'] / df['Num_Votes'].sum())
 
 
 
-
-
 # Scrape data from html table
 url = 'https://localistica.com/usa/ky/louisville/zipcodes/highest-household-income-zipcodes/'
 scraper = pd.read_html(url)
