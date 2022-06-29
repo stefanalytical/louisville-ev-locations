@@ -29,11 +29,10 @@ scraper = pd.read_html(url)
 df2 = scraper[0]
 
 # Drop and rename columns
-df2.drop([1], axis = 1, inplace = True)
+df2.drop([1,3], axis = 1, inplace = True)
 fixed_columns = {
     0:'Zip_Code',
     2:'Zip_Population',
-    3:'Zip_Growth_Percentage',
     4:'Zip_Age',
     5:'Zip_Income',
 }
@@ -66,7 +65,6 @@ df3['Zip_Income_National_Rank'] = df3['Zip_Income_National_Rank'].str.replace(',
 df = df.astype({"Zip_Code": str})
 df2 = df2.astype({"Zip_Population": int, "Zip_Age": float})
 df2['Zip_Income'] = df2['Zip_Income'].replace('[$,]', '', regex=True).astype(float)
-df2['Zip_Growth_Percentage'] = df2['Zip_Growth_Percentage'].str.rstrip('%').astype(float) / 100
 df3 = df3.astype({'Zip_Income_National_Rank': int})
 
 # Created a fourth DataFrame by merging df, df2, df3 based on the Zip_Code column
@@ -111,8 +109,8 @@ final_df['Zip_Population_Size'] = final_df['Zip_Population'].apply(filter3)
 
 # Rearrange columns to make DataFrame more readable
 final_df = final_df[['Name', 'Zip_Code', 'Num_Votes', 'Votes_Percentage_of_Total', 
-                    'Longitude', 'Latitude', 'Zip_Age', 'Zip_Population', 'Zip_Growth_Percentage', 
-                    'Zip_Income', 'Zip_Income_National_Rank', 'Zip_Total_Income', 'Income_Group', 
+                    'Longitude', 'Latitude', 'Zip_Age', 'Zip_Population', 'Zip_Income', 
+                    'Zip_Income_National_Rank', 'Zip_Total_Income', 'Income_Group', 
                     'Age_Group', 'Zip_Population_Size'
                     ]]
 
