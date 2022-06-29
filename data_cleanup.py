@@ -18,7 +18,7 @@ df['Name'] = df['Name'].replace(['RIVERVIEW PARK', 'KROGER', 'BECKLEY PARK', 'Be
 
 
 
-df['Percentage_of_Total'] = (df['Num_Votes'] / df['Num_Votes'].sum()) * 100
+df['Percentage_of_Total'] = (df['Num_Votes'] / df['Num_Votes'].sum())
 
 
 
