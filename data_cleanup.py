@@ -16,6 +16,14 @@ df = df[df.Num_Votes != 0]
 df['Name'] = df['Name'].replace(['RIVERVIEW PARK', 'KROGER', 'BECKLEY PARK', 'Beckley Creek Park, Egg Lawn', 'EV Charging Suggestion: St.Matthews/ Eline Library'],
                                 ['Riverview Park', 'Kroger', 'Beckley Park', 'Egg Lawn', 'Eline Library'])
 
+
+
+df['Percentage_of_Total'] = (df['Num_Votes'] / df['Num_Votes'].sum()) * 100
+
+
+
+
+
 # Scrape data from html table
 url = 'https://localistica.com/usa/ky/louisville/zipcodes/highest-household-income-zipcodes/'
 scraper = pd.read_html(url)
