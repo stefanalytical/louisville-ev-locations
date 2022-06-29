@@ -14,12 +14,12 @@ df.rename(columns = fixed_columns, inplace = True)
 df = df[df.Num_Votes != 0]
 
 # Rename certain values in 'Name' column to match rest of data
-df['Name'] = df['Name'].replace(['RIVERVIEW PARK', 'KROGER', 'BECKLEY PARK', 'Beckley Creek Park, Egg Lawn', 'EV Charging Suggestion: St.Matthews/ Eline Library'],
-                                ['Riverview Park', 'Kroger', 'Beckley Park', 'Egg Lawn', 'Eline Library'])
+df['Name'] = df['Name'].replace(['RIVERVIEW PARK', 'KROGER', 'BECKLEY PARK', 'Beckley Creek Park, Egg Lawn', 'EV Charging Suggestion: St.Matthews/ Eline Library', '7th Street Road at Industry Road / Metro Government Archives'],
+                                ['Riverview Park', 'Kroger', 'Beckley Park', 'Egg Lawn', 'Eline Library', '7th Street at Industry Road'])
 
 # Create calculated column to find the number of votes percentage of the total and limit decimal places to 4
 df['Votes_Percentage_of_Total'] = (df['Num_Votes'] / df['Num_Votes'].sum())
-df['Votes_Percentage_of_Total'] = df['Votes_Percentage_of_Total'].round(decimals=4)
+df['Votes_Percentage_of_Total'] = df['Votes_Percentage_of_Total'].round(decimals = 4)
 
 # Scrape data from html table
 url = 'https://localistica.com/usa/ky/louisville/zipcodes/highest-household-income-zipcodes/'
@@ -109,6 +109,7 @@ final_df['Income_Group'] = final_df['Zip_Income'].apply(filter1)
 final_df['Age_Group'] = final_df['Zip_Age'].apply(filter2)
 final_df['Zip_Population_Size'] = final_df['Zip_Population'].apply(filter3)
 
+# Rearrange columns to make DataFrame more readable
 final_df = final_df[['Name', 'Zip_Code', 'Num_Votes', 'Votes_Percentage_of_Total', 
                     'Longitude', 'Latitude', 'Zip_Age', 'Zip_Population', 'Zip_Growth_Percentage', 
                     'Zip_Income', 'Zip_Income_National_Rank', 'Zip_Total_Income', 'Income_Group', 
