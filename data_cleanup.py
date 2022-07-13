@@ -124,33 +124,20 @@ final_df['Income_Group'] = final_df['Zip_Income'].apply(filter1)
 final_df['Age_Group'] = final_df['Zip_Age'].apply(filter2)
 final_df['Zip_Pop_Size'] = final_df['Zip_Population'].apply(filter3)
 
-# Rearrange columns to make DataFrame more readable
-final_df = final_df[['Name', 'Num_Votes', 'Zip_Code', 'Longitude', 'Latitude', 'Zip_Age', 
-                    'Zip_Population', 'Zip_Income', 'Zip_Income_National_Rank', 'Zip_Total_Income', 
-                    'Income_Group', 'Age_Group', 'Zip_Pop_Size'
-                    ]]
-
-
-
-
-
-
-
-
-
-#final_df = pd.merge(final_df, df2, on='Zip_Code')
+# Merge df2 and final_df and drop duplicate rows
 final_df = final_df.merge(df2, on = 'Zip_Code')
 final_df = final_df.drop_duplicates()
-
 
 # Sort rows by values in 'Num_Votes' in descending order
 final_df = final_df.sort_values('Num_Votes', ascending=False)
 
+# Rearrange columns to make DataFrame more readable
+final_df = final_df[['Name', 'Num_Votes', 'Zip_Code', 'Longitude', 'Latitude', 'Zip_Age', 
+                    'Zip_Population', 'Zip_Income', 'Zip_Income_National_Rank', 'Zip_Total_Income', 
+                    'Vehicle_Theft_Per_Zip','Income_Group', 'Age_Group', 'Zip_Pop_Size'
+                    ]]
+
 print(final_df)
-
-
-
-
 
 # Make sure the clean data folder exists
 new_csv_folder = ('clean_data')
