@@ -38,13 +38,6 @@ df2.rename(columns = fixed_columns, inplace = True)
 df2['Vehicle_Theft_Per_Zip'] = df2.groupby(['Zip_Code']).transform('count')
 df2.drop(['Crime_Type'], axis = 1, inplace = True)
 
-print(df2)
-
-
-
-
-
-
 # Scrape data from html table
 url = 'https://localistica.com/usa/ky/louisville/zipcodes/highest-household-income-zipcodes/'
 scraper = pd.read_html(url)
@@ -129,17 +122,32 @@ def filter3(x):
 # Create new column and apply filters
 final_df['Income_Group'] = final_df['Zip_Income'].apply(filter1)
 final_df['Age_Group'] = final_df['Zip_Age'].apply(filter2)
-final_df['Zip_Population_Size'] = final_df['Zip_Population'].apply(filter3)
+final_df['Zip_Pop_Size'] = final_df['Zip_Population'].apply(filter3)
 
 # Rearrange columns to make DataFrame more readable
 final_df = final_df[['Name', 'Num_Votes', 'Zip_Code', 'Longitude', 'Latitude', 'Zip_Age', 
                     'Zip_Population', 'Zip_Income', 'Zip_Income_National_Rank', 'Zip_Total_Income', 
-                    'Income_Group', 'Age_Group', 'Zip_Population_Size'
+                    'Income_Group', 'Age_Group', 'Zip_Pop_Size'
                     ]]
 
+# Sort rows by values in 'Num_Votes' in descending order
 final_df = final_df.sort_values('Num_Votes', ascending=False)
 
+
+
+
+
+
+
+#final_df = pd.merge(final_df, df2, on='Zip_Code')
+final_df = final_df.merge(df2, on = 'Zip_Code')
+final_df = final_df.drop_duplicates()
+
 print(final_df)
+
+
+
+
 
 # Make sure the clean data folder exists
 new_csv_folder = ('clean_data')
