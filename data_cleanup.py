@@ -45,8 +45,6 @@ print(df2)
 
 
 
-
-
 # Scrape data from html table
 url = 'https://localistica.com/usa/ky/louisville/zipcodes/highest-household-income-zipcodes/'
 scraper = pd.read_html(url)
@@ -138,6 +136,8 @@ final_df = final_df[['Name', 'Num_Votes', 'Zip_Code', 'Longitude', 'Latitude', '
                     'Zip_Population', 'Zip_Income', 'Zip_Income_National_Rank', 'Zip_Total_Income', 
                     'Income_Group', 'Age_Group', 'Zip_Population_Size'
                     ]]
+
+final_df = final_df.sort_values('Num_Votes', ascending=False)
 
 print(final_df)
 
