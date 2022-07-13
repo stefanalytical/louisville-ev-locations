@@ -17,54 +17,84 @@ df = df[df.Num_Votes != 0]
 df['Name'] = df['Name'].replace(['RIVERVIEW PARK', 'KROGER', 'BECKLEY PARK', 'Beckley Creek Park, Egg Lawn', 'EV Charging Suggestion: St.Matthews/ Eline Library', '7th Street Road at Industry Road / Metro Government Archives'],
                                 ['Riverview Park', 'Kroger', 'Beckley Park', 'Egg Lawn', 'Eline Library', '7th Street at Industry Road'])
 
+# Read in CSV file
+df2 = pd.read_csv ('crime_data_2021.csv')
+
+# Include only 2 columns relevant to final DataFrame and only include rows with specific string
+df2 = df2[['CRIME_TYPE', 'ZIP_CODE']]
+df2 = df2[df2["CRIME_TYPE"].str.contains("MOTOR VEHICLE THEFT")]
+
+# Remove decimal and digit after from all zip codes
+df2 = df2.astype(str).replace(r'\.0$', '', regex=True)
+
+# Rename columns to match other DataFrames and to allow for joining
+fixed_columns = {
+    'CRIME_TYPE':'Crime_Type',
+    'ZIP_CODE':'Zip_Code',
+}
+df2.rename(columns = fixed_columns, inplace = True)
+
+# Create new column to count the number of vehicle thefts per zip code and drop 'Crime_Type' column
+df2['Vehicle_Theft_Per_Zip'] = df2.groupby(['Zip_Code']).transform('count')
+df2.drop(['Crime_Type'], axis = 1, inplace = True)
+
+print(df2)
+
+
+
+
+
+
+
+
 # Scrape data from html table
 url = 'https://localistica.com/usa/ky/louisville/zipcodes/highest-household-income-zipcodes/'
 scraper = pd.read_html(url)
 
 # Get first table                                                                                                           
-df2 = scraper[0]
+df3 = scraper[0]
 
 # Drop and rename columns
-df2.drop([1,3], axis = 1, inplace = True)
+df3.drop([1,3], axis = 1, inplace = True)
 fixed_columns = {
     0:'Zip_Code',
     2:'Zip_Population',
     4:'Zip_Age',
     5:'Zip_Income',
 }
-df2.rename(columns = fixed_columns, inplace = True)
+df3.rename(columns = fixed_columns, inplace = True)
 
 # Scrape data from html table
 url2 = 'http://zipatlas.com/us/ky/louisville/zip-code-comparison/median-household-income.html'
 scraper2 = pd.read_html(url2)
 
 # Get table                                                                                                           
-df3 = scraper2[11]
-df3 = df3[[1, 6]].copy()
+df4 = scraper2[11]
+df4 = df4[[1, 6]].copy()
 
 # Rename columns to allow merger of DataFrames
 fixed_columns = {
     1:'Zip_Code',
     6:'Zip_Income_National_Rank',
 }
-df3.rename(columns = fixed_columns, inplace = True)
+df4.rename(columns = fixed_columns, inplace = True)
 
 # Drop first row with incorrect headings
-df2 = df2.drop(df2.index[0])
 df3 = df3.drop(df3.index[0])
+df4 = df4.drop(df4.index[0])
 
 # Remove hashtag and comma to convert str to int
-df3['Zip_Income_National_Rank'] = df3['Zip_Income_National_Rank'].map(lambda x: x.lstrip('#'))
-df3['Zip_Income_National_Rank'] = df3['Zip_Income_National_Rank'].str.replace(',', '')
+df4['Zip_Income_National_Rank'] = df4['Zip_Income_National_Rank'].map(lambda x: x.lstrip('#'))
+df4['Zip_Income_National_Rank'] = df4['Zip_Income_National_Rank'].str.replace(',', '')
 
 # Convert data types for all DataFrames
 df = df.astype({"Zip_Code": str})
-df2 = df2.astype({"Zip_Population": int, "Zip_Age": float})
-df2['Zip_Income'] = df2['Zip_Income'].replace('[$,]', '', regex=True).astype(float)
-df3 = df3.astype({'Zip_Income_National_Rank': int})
+df3 = df3.astype({"Zip_Population": int, "Zip_Age": float})
+df3['Zip_Income'] = df3['Zip_Income'].replace('[$,]', '', regex=True).astype(float)
+df4 = df4.astype({'Zip_Income_National_Rank': int})
 
-# Created a fourth DataFrame by merging df, df2, df3 based on the Zip_Code column
-final_df = pd.merge(pd.merge(df, df2, on='Zip_Code'), df3, on='Zip_Code')
+# Created a fourth DataFrame by merging df, df3, df4 based on the Zip_Code column
+final_df = pd.merge(pd.merge(df, df3, on='Zip_Code'), df4, on='Zip_Code')
 
 # Create calculated column and convert data type and supress scientific notation
 final_df['Zip_Total_Income'] = final_df.Zip_Population * final_df.Zip_Income
