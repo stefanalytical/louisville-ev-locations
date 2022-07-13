@@ -130,8 +130,7 @@ final_df = final_df[['Name', 'Num_Votes', 'Zip_Code', 'Longitude', 'Latitude', '
                     'Income_Group', 'Age_Group', 'Zip_Pop_Size'
                     ]]
 
-# Sort rows by values in 'Num_Votes' in descending order
-final_df = final_df.sort_values('Num_Votes', ascending=False)
+
 
 
 
@@ -142,6 +141,10 @@ final_df = final_df.sort_values('Num_Votes', ascending=False)
 #final_df = pd.merge(final_df, df2, on='Zip_Code')
 final_df = final_df.merge(df2, on = 'Zip_Code')
 final_df = final_df.drop_duplicates()
+
+
+# Sort rows by values in 'Num_Votes' in descending order
+final_df = final_df.sort_values('Num_Votes', ascending=False)
 
 print(final_df)
 
