@@ -1,23 +1,35 @@
 import pandas as pd
 import re
 import os
-import numpy as np
 
+# region - DF1
+
+# Read in first .CSV file using Pandas
 df = pd.read_csv ('louisville_evs.csv')
+
+# Drop rows that are not needed in final merged DataFrame
 df.drop(['OBJECTID', 'FID_EV_Charging_Suggestions', 'Comments', 'Location', 'Date', 'CreationDate', 'COUNDIST'], axis = 1, inplace = True)
-df = df.dropna()
+
+# Rename columns
 fixed_columns = {
     'NUMVOTES':'Num_Votes',
     'ZIPCODE':'Zip_Code',
 }
 df.rename(columns = fixed_columns, inplace = True)
-df = df[df.Num_Votes != 0]
 
-# Rename certain values in 'Name' column to match rest of data
+# Drop rows with value zero and remove all rows with Null/NaN values
+df = df[df.Num_Votes != 0]
+df = df.dropna()
+
+# Rename strings in 'Name' column
 df['Name'] = df['Name'].replace(['RIVERVIEW PARK', 'KROGER', 'BECKLEY PARK', 'Beckley Creek Park, Egg Lawn', 'EV Charging Suggestion: St.Matthews/ Eline Library', '7th Street Road at Industry Road / Metro Government Archives'],
                                 ['Riverview Park', 'Kroger', 'Beckley Park', 'Egg Lawn', 'Eline Library', '7th Street at Industry Road'])
 
-# Read in CSV file
+# endregion
+
+# region - DF2
+
+# Read in second .CSV file
 df2 = pd.read_csv ('crime_data_2021.csv')
 
 # Include only 2 columns relevant to final DataFrame and only include rows with specific string
@@ -38,6 +50,10 @@ df2.rename(columns = fixed_columns, inplace = True)
 df2['Vehicle_Theft_Per_Zip'] = df2.groupby(['Zip_Code']).transform('count')
 df2.drop(['Crime_Type'], axis = 1, inplace = True)
 
+# endregion
+
+# region - DF3
+
 # Scrape data from html table
 url = 'https://localistica.com/usa/ky/louisville/zipcodes/highest-household-income-zipcodes/'
 scraper = pd.read_html(url)
@@ -54,6 +70,10 @@ fixed_columns = {
     5:'Zip_Income',
 }
 df3.rename(columns = fixed_columns, inplace = True)
+
+# endregion
+
+# region - DF4
 
 # Scrape data from html table
 url2 = 'http://zipatlas.com/us/ky/louisville/zip-code-comparison/median-household-income.html'
@@ -78,6 +98,10 @@ df4 = df4.drop(df4.index[0])
 df4['Zip_Income_National_Rank'] = df4['Zip_Income_National_Rank'].map(lambda x: x.lstrip('#'))
 df4['Zip_Income_National_Rank'] = df4['Zip_Income_National_Rank'].str.replace(',', '')
 
+# endregion
+
+# region - Convert and Merge
+
 # Convert data types for all DataFrames
 df = df.astype({"Zip_Code": str})
 df3 = df3.astype({"Zip_Population": int, "Zip_Age": float})
@@ -86,6 +110,10 @@ df4 = df4.astype({'Zip_Income_National_Rank': int})
 
 # Created a fourth DataFrame by merging df, df3, df4 based on the Zip_Code column
 final_df = pd.merge(pd.merge(df, df3, on='Zip_Code'), df4, on='Zip_Code')
+
+# endregion
+
+# region - Create and format columns
 
 # Create calculated column and convert data type and supress scientific notation
 final_df['Zip_Total_Income'] = final_df.Zip_Population * final_df.Zip_Income
@@ -137,7 +165,9 @@ final_df = final_df[['Name', 'Num_Votes', 'Zip_Code', 'Longitude', 'Latitude', '
                     'Vehicle_Theft_Per_Zip','Income_Group', 'Age_Group', 'Zip_Pop_Size'
                     ]]
 
-print(final_df)
+# endregion
+
+# region - Create folder
 
 # Make sure the clean data folder exists
 new_csv_folder = ('clean_data')
@@ -147,3 +177,6 @@ if not check_folder:
 
 # Export cleaned Pandas DataFrame to CSV file
 final_df.to_csv(('clean_data/cleaned_louisville_evs.csv'), index=False)
+
+# endregion
+print(final_df)
