@@ -148,7 +148,9 @@ final_df = final_df.drop_duplicates()
 # Sort rows by values in 'Num_Votes' in descending order
 final_df = final_df.sort_values('Num_Votes', ascending=False)
 
+# Create new calculated ratio column and set decimal places to 5
 final_df['Theft_Pop_Ratio'] = final_df['Vehicle_Theft_Per_Zip'] / final_df['Zip_Population']
+final_df['Theft_Pop_Ratio'] = final_df['Theft_Pop_Ratio'].round(decimals = 5)
 
 # Rearrange columns to make DataFrame more readable
 final_df = final_df[['Name', 'Num_Votes', 'Zip_Code', 'Longitude', 'Latitude', 'Zip_Age', 
