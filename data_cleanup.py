@@ -148,7 +148,7 @@ def filter3(x):
         return 'Large'
 
 def filter4(x):
-    if x < .0001:
+    if x < .00096:
         return 'Lowest'
     if (x >= .0001 and x < .001):
         return 'Low'
