@@ -3,7 +3,6 @@ import re
 import os
 
 # region - DF1
-
 # Read in first .CSV file using Pandas
 df = pd.read_csv ('louisville_evs.csv')
 
@@ -24,11 +23,9 @@ df = df.dropna()
 # Rename strings in 'Name' column
 df['Name'] = df['Name'].replace(['RIVERVIEW PARK', 'KROGER', 'BECKLEY PARK', 'Beckley Creek Park, Egg Lawn', 'EV Charging Suggestion: St.Matthews/ Eline Library', '7th Street Road at Industry Road / Metro Government Archives'],
                                 ['Riverview Park', 'Kroger', 'Beckley Park', 'Egg Lawn', 'Eline Library', '7th Street at Industry Road'])
-
 # endregion
 
 # region - DF2
-
 # Read in second .CSV file
 df2 = pd.read_csv ('crime_data_2021.csv')
 
@@ -49,11 +46,9 @@ df2.rename(columns = fixed_columns, inplace = True)
 # Create new column to count the number of vehicle thefts per zip code and drop 'Crime_Type' column
 df2['Vehicle_Theft_Per_Zip'] = df2.groupby(['Zip_Code']).transform('count')
 df2.drop(['Crime_Type'], axis = 1, inplace = True)
-
 # endregion
 
 # region - DF3
-
 # Scrape data from html table
 url = 'https://localistica.com/usa/ky/louisville/zipcodes/highest-household-income-zipcodes/'
 scraper = pd.read_html(url)
@@ -70,11 +65,9 @@ fixed_columns = {
     5:'Zip_Income',
 }
 df3.rename(columns = fixed_columns, inplace = True)
-
 # endregion
 
 # region - DF4
-
 # Scrape data from html table
 url2 = 'http://zipatlas.com/us/ky/louisville/zip-code-comparison/median-household-income.html'
 scraper2 = pd.read_html(url2)
@@ -97,11 +90,9 @@ df4 = df4.drop(df4.index[0])
 # Remove hashtag and comma to convert str to int
 df4['Zip_Income_National_Rank'] = df4['Zip_Income_National_Rank'].map(lambda x: x.lstrip('#'))
 df4['Zip_Income_National_Rank'] = df4['Zip_Income_National_Rank'].str.replace(',', '')
-
 # endregion
 
 # region - Convert and Merge
-
 # Convert data types for all DataFrames
 df = df.astype({"Zip_Code": str})
 df3 = df3.astype({"Zip_Population": int, "Zip_Age": float})
@@ -110,11 +101,9 @@ df4 = df4.astype({'Zip_Income_National_Rank': int})
 
 # Created a fourth DataFrame by merging df, df3, df4 based on the Zip_Code column
 final_df = pd.merge(pd.merge(df, df3, on='Zip_Code'), df4, on='Zip_Code')
-
 # endregion
 
-# region - Create and format columns
-
+# region - Create and Format Columns
 # Create calculated column and convert data type and supress scientific notation
 final_df['Zip_Total_Income'] = final_df.Zip_Population * final_df.Zip_Income
 final_df = final_df.astype({'Zip_Total_Income': int})
@@ -159,16 +148,16 @@ final_df = final_df.drop_duplicates()
 # Sort rows by values in 'Num_Votes' in descending order
 final_df = final_df.sort_values('Num_Votes', ascending=False)
 
+final_df['Theft_Pop_Ratio'] = final_df['Vehicle_Theft_Per_Zip'] / final_df['Zip_Population']
+
 # Rearrange columns to make DataFrame more readable
 final_df = final_df[['Name', 'Num_Votes', 'Zip_Code', 'Longitude', 'Latitude', 'Zip_Age', 
                     'Zip_Population', 'Zip_Income', 'Zip_Income_National_Rank', 'Zip_Total_Income', 
-                    'Vehicle_Theft_Per_Zip','Income_Group', 'Age_Group', 'Zip_Pop_Size'
+                    'Vehicle_Theft_Per_Zip', 'Theft_Pop_Ratio', 'Income_Group', 'Age_Group', 'Zip_Pop_Size'
                     ]]
-
 # endregion
 
-# region - Create folder
-
+# region - Create Cleaned Folder
 # Make sure the clean data folder exists
 new_csv_folder = ('clean_data')
 check_folder = os.path.isdir(new_csv_folder)
@@ -177,6 +166,5 @@ if not check_folder:
 
 # Export cleaned Pandas DataFrame to CSV file
 final_df.to_csv(('clean_data/cleaned_louisville_evs.csv'), index=False)
-
 # endregion
 print(final_df)
