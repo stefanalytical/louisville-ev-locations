@@ -2,7 +2,7 @@ import pandas as pd
 import re
 import os
 
-# region - DF1
+# region - DF1 (CSV)
 # Read in first .CSV file using Pandas
 df = pd.read_csv ('louisville_evs.csv')
 
@@ -25,7 +25,7 @@ df['Name'] = df['Name'].replace(['RIVERVIEW PARK', 'KROGER', 'BECKLEY PARK', 'Be
                                 ['Riverview Park', 'Kroger', 'Beckley Park', 'Egg Lawn', 'Eline Library', '7th Street at Industry Road'])
 # endregion
 
-# region - DF2
+# region - DF2 (CSV)
 # Read in second .CSV file
 df2 = pd.read_csv ('crime_data_2021.csv')
 
@@ -48,7 +48,7 @@ df2['Vehicle_Theft_Per_Zip'] = df2.groupby(['Zip_Code']).transform('count')
 df2.drop(['Crime_Type'], axis = 1, inplace = True)
 # endregion
 
-# region - DF3
+# region - DF3 (Scraped)
 # Scrape data from html table
 url = 'https://localistica.com/usa/ky/louisville/zipcodes/highest-household-income-zipcodes/'
 scraper = pd.read_html(url)
@@ -67,7 +67,7 @@ fixed_columns = {
 df3.rename(columns = fixed_columns, inplace = True)
 # endregion
 
-# region - DF4
+# region - DF4 (Scraped)
 # Scrape data from html table
 url2 = 'http://zipatlas.com/us/ky/louisville/zip-code-comparison/median-household-income.html'
 scraper2 = pd.read_html(url2)
@@ -109,6 +109,17 @@ final_df['Zip_Total_Income'] = final_df.Zip_Population * final_df.Zip_Income
 final_df = final_df.astype({'Zip_Total_Income': int})
 final_df = final_df.astype({'Zip_Income': int})
 
+# Merge df2 and final_df and drop duplicate rows
+final_df = final_df.merge(df2, on = 'Zip_Code')
+final_df = final_df.drop_duplicates()
+
+# Sort rows by values in 'Num_Votes' in descending order
+final_df = final_df.sort_values('Num_Votes', ascending=False)
+
+# Create new calculated ratio column and set decimal places to 5
+final_df['Theft_Pop_Ratio'] = final_df['Vehicle_Theft_Per_Zip'] / final_df['Zip_Population']
+final_df['Theft_Pop_Ratio'] = final_df['Theft_Pop_Ratio'].round(decimals = 5)
+
 # Define function filter to categorize int data to str
 def filter1(x):
     if x <= 20000:
@@ -136,26 +147,28 @@ def filter3(x):
     if x >= 30000:
         return 'Large'
 
+def filter4(x):
+    if x < .0001:
+        return 'Lowest'
+    if (x >= .0001 and x < .001):
+        return 'Low'
+    if (x >= .001 and x < .01):
+        return 'Medium'
+    if (x >= .01 and x < .1):
+        return 'High'
+    if x >= .1:
+        return 'Highest'
+
 # Create new column and apply filters
 final_df['Income_Group'] = final_df['Zip_Income'].apply(filter1)
 final_df['Age_Group'] = final_df['Zip_Age'].apply(filter2)
 final_df['Zip_Pop_Size'] = final_df['Zip_Population'].apply(filter3)
-
-# Merge df2 and final_df and drop duplicate rows
-final_df = final_df.merge(df2, on = 'Zip_Code')
-final_df = final_df.drop_duplicates()
-
-# Sort rows by values in 'Num_Votes' in descending order
-final_df = final_df.sort_values('Num_Votes', ascending=False)
-
-# Create new calculated ratio column and set decimal places to 5
-final_df['Theft_Pop_Ratio'] = final_df['Vehicle_Theft_Per_Zip'] / final_df['Zip_Population']
-final_df['Theft_Pop_Ratio'] = final_df['Theft_Pop_Ratio'].round(decimals = 5)
+final_df['Vehicle_Theft_Likeliness'] = final_df['Theft_Pop_Ratio'].apply(filter4)
 
 # Rearrange columns to make DataFrame more readable
 final_df = final_df[['Name', 'Num_Votes', 'Zip_Code', 'Longitude', 'Latitude', 'Zip_Age', 
                     'Zip_Population', 'Zip_Income', 'Zip_Income_National_Rank', 'Zip_Total_Income', 
-                    'Vehicle_Theft_Per_Zip', 'Theft_Pop_Ratio', 'Income_Group', 'Age_Group', 'Zip_Pop_Size'
+                    'Vehicle_Theft_Per_Zip', 'Theft_Pop_Ratio', 'Income_Group', 'Vehicle_Theft_Likeliness', 'Age_Group', 'Zip_Pop_Size'
                     ]]
 # endregion
 
