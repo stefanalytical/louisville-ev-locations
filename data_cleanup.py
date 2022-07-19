@@ -4,7 +4,7 @@ import os
 
 # region - DF1 (CSV)
 # Read in first .CSV file using Pandas
-df = pd.read_csv ('louisville_evs.csv')
+df = pd.read_csv('louisville_evs.csv')
 
 # Drop rows that are not needed in final merged DataFrame
 df.drop(['OBJECTID', 'FID_EV_Charging_Suggestions', 'Comments', 'Location', 'Date', 'CreationDate', 'COUNDIST'], axis = 1, inplace = True)
@@ -179,7 +179,7 @@ check_folder = os.path.isdir(new_csv_folder)
 if not check_folder:
     os.makedirs(new_csv_folder)
 
-# Export cleaned Pandas DataFrame to CSV file
+# Export cleaned Pandas DataFrame to .CSV file
 final_df.to_csv(('clean_data/cleaned_louisville_evs.csv'), index=False)
 # endregion
 print(final_df)
