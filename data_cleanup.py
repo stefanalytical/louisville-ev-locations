@@ -17,7 +17,7 @@ fixed_columns = {
 df.rename(columns = fixed_columns, inplace = True)
 
 # Drop rows with value zero and remove all rows with Null/NaN values
-#df = df[df.Num_Votes != 0]
+df = df[df.Num_Votes != 0]
 df = df.dropna()
 
 # Rename strings in 'Name' column
@@ -151,6 +151,9 @@ def filter3(x):
 final_df['Income_Group'] = final_df['Zip_Income'].apply(filter1)
 final_df['Age_Group'] = final_df['Zip_Age'].apply(filter2)
 final_df['Zip_Pop_Size'] = final_df['Zip_Population'].apply(filter3)
+
+final_df.at[856,'Zip_Code']='40118'
+
 
 # Rearrange columns to make DataFrame more readable
 final_df = final_df[['Name', 'Num_Votes', 'Zip_Code', 'Longitude', 'Latitude', 'Zip_Age', 
