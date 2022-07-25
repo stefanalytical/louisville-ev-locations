@@ -117,8 +117,8 @@ final_df = final_df.drop_duplicates()
 final_df = final_df.sort_values('Num_Votes', ascending=False)
 
 # Create new calculated ratio column and set decimal places to 5
-final_df['Theft_Pop_Ratio'] = final_df['Num_Votes'] / final_df['Vehicle_Theft_Per_Zip']
-final_df['Theft_Pop_Ratio'] = final_df['Theft_Pop_Ratio'].round(decimals = 5)
+final_df['Theft_Vote_Ratio'] = final_df['Num_Votes'] / final_df['Vehicle_Theft_Per_Zip']
+final_df['Theft_Vote_Ratio'] = final_df['Theft_Vote_Ratio'].round(decimals = 5)
 
 # Define function filter to categorize int data to str
 def filter1(x):
@@ -147,28 +147,15 @@ def filter3(x):
     if x >= 30000:
         return 'Large'
 
-def filter4(x):
-    if x < .00096:
-        return 'Lowest'
-    if (x >= .0001 and x < .001):
-        return 'Low'
-    if (x >= .001 and x < .01):
-        return 'Medium'
-    if (x >= .01 and x < .1):
-        return 'High'
-    if x >= .1:
-        return 'Highest'
-
 # Create new column and apply filters
 final_df['Income_Group'] = final_df['Zip_Income'].apply(filter1)
 final_df['Age_Group'] = final_df['Zip_Age'].apply(filter2)
 final_df['Zip_Pop_Size'] = final_df['Zip_Population'].apply(filter3)
-final_df['Vehicle_Theft_Likeliness'] = final_df['Theft_Pop_Ratio'].apply(filter4)
 
 # Rearrange columns to make DataFrame more readable
 final_df = final_df[['Name', 'Num_Votes', 'Zip_Code', 'Longitude', 'Latitude', 'Zip_Age', 
                     'Zip_Population', 'Zip_Income', 'Zip_Income_National_Rank', 'Zip_Total_Income', 
-                    'Vehicle_Theft_Per_Zip', 'Theft_Pop_Ratio', 'Income_Group', 'Vehicle_Theft_Likeliness', 'Age_Group', 'Zip_Pop_Size'
+                    'Vehicle_Theft_Per_Zip', 'Theft_Vote_Ratio', 'Income_Group', 'Age_Group', 'Zip_Pop_Size'
                     ]]
 # endregion
 
