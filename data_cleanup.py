@@ -4,7 +4,7 @@ import os
 
 # region - DF1 (CSV)
 # Read in first .CSV file using Pandas
-df = pd.read_csv('louisville_evs.csv')
+df = pd.read_csv('CSVs/louisville_evs.csv')
 
 # Drop rows that are not needed in final merged DataFrame
 df.drop(['OBJECTID', 'FID_EV_Charging_Suggestions', 'Comments', 'Location', 'Date', 'CreationDate', 'COUNDIST'], axis = 1, inplace = True)
@@ -17,7 +17,7 @@ fixed_columns = {
 df.rename(columns = fixed_columns, inplace = True)
 
 # Drop rows with value zero and remove all rows with Null/NaN values
-df = df[df.Num_Votes != 0]
+#df = df[df.Num_Votes != 0]
 df = df.dropna()
 
 # Rename strings in 'Name' column
@@ -27,7 +27,7 @@ df['Name'] = df['Name'].replace(['RIVERVIEW PARK', 'KROGER', 'BECKLEY PARK', 'Be
 
 # region - DF2 (CSV)
 # Read in second .CSV file
-df2 = pd.read_csv ('crime_data_2021.csv')
+df2 = pd.read_csv ('CSVs/crime_data_2021.csv')
 
 # Include only 2 columns relevant to final DataFrame and only include rows with specific string
 df2 = df2[['CRIME_TYPE', 'ZIP_CODE']]
