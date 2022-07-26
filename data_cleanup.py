@@ -153,7 +153,8 @@ final_df['Age_Group'] = final_df['Zip_Age'].apply(filter2)
 final_df['Zip_Pop_Size'] = final_df['Zip_Population'].apply(filter3)
 
 final_df.at[856,'Zip_Code'] = '40118'
-
+final_df.at[17907,'Zip_Code'] = '40242'
+final_df.at[3819,'Zip_Code'] = '40225'
 
 # Rearrange columns to make DataFrame more readable
 final_df = final_df[['Name', 'Num_Votes', 'Zip_Code', 'Longitude', 'Latitude', 'Zip_Age', 
