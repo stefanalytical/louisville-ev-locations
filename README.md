@@ -1,5 +1,5 @@
 # [Louisville EV Charging Locations](https://github.com/stefanalytical/louisville_ev_locations.git)
-**This is a project for Code Louisville Data Analytics Session 2 Fall 2022**
+_**This is a project for Code Louisville Data Analytics Session 2 Fall 2022**_
 
 Disclaimer: Towards the end of the project I realized zip codes were not the best method to accurately map data. Going forward, I will use a combination of Federal Information Processing Systems (FIPS) codes and shapefiles in tandem with geopandas and will update this repository.
 
