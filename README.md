@@ -25,7 +25,13 @@ This project was created using Python 3.10. If you need to download or update Py
 
 2. A virtual environment is required to run the program. Creation and activation will depend on the system you are using. 
 
-First, clone the repository: [https://github.com/stefanalytical/real-time-currency-converter.git](https://github.com/stefanalytical/real-time-currency-converter.git)
+To Create the virtual environment:
+
+```bash
+python -m venv venv
+or
+python -m venv env
+```
 
 Once the virtual environment is activated, please install the packages found in the requirements.txt folder.
 
