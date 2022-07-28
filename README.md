@@ -25,25 +25,25 @@ This project was created using Python 3.10. If you need to download or update Py
 
 2. A virtual environment is required to run the program. Creation and activation will depend on the system you are using. Using the command prompt:
 
-To Create the virtual environment:
+**To Create the virtual environment:**
 
 `python -m venv venv` <br />
 or <br />
 `python -m venv env`
 
-To activate the virtual environment:
+**To activate the virtual environment:**
 
-Windows: <br />
-`venv/Scripts/Activate` <br />
+**Windows:** <br />
+<br />`venv/Scripts/Activate` <br />
 or <br />
 `venv\Scripts\Activate` - (Powershell)
 
-Mac: <br />
-`source venv/bin/activate` <br />
+**Mac:** <br />
+<br />`source venv/bin/activate` <br />
 or <br />
 `source env/bin/activate`
 
-Once the virtual environment is activated, please install the project's dependencies found in the requirements.txt folder.
+**Once the virtual environment is activated, please install the project's dependencies found in the requirements.txt folder.**
 
 ```bash
 pip install -r requirements.txt
@@ -53,7 +53,7 @@ Run the file
 python Conversion.py
 ```
 
-Relevant packages that were used:
+**Relevant packages that were used:**
 ```bash
 - Pandas
 - Matplotlib
