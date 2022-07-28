@@ -3,13 +3,10 @@ import matplotlib.pyplot as plt
 
 df = pd.read_csv('clean_data/cleaned_louisville_evs.csv')
 
-table = pd.pivot_table(df, index=['Zip_Pop_Size', 'Income_Group'], 
-                       values=['Num_Votes'], aggfunc={'Num_Votes': 'count',})
+table = pd.pivot_table(df, index=['Zip_Pop_Size', 'Income_Group', 'Age_Group'], 
+                       values=['Num_Votes'], aggfunc={'Num_Votes': 'sum',})
 
-table2 = pd.pivot_table(df, index=['Theft_Vote_Ratio', 'Income_Group'], 
-                       values=['Num_Votes'], aggfunc={'Num_Votes': 'count',})
-
-
+print(table)
 
 x = [157,69,152]
 x2 = [207,132,39]
