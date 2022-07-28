@@ -1,9 +1,11 @@
 # [Louisville EV Charging Locations](https://github.com/stefanalytical/louisville_ev_locations.git)
-This is a project for Code Louisville Data Analytics Session 2 Fall 2022
+- This is a project for Code Louisville Data Analytics Session 2 Fall 2022 -
 
-Do you need to convert a currency into another? This converter features over 150 of the most common currencies and allows you to convert them into each other with up-to-date prices thanks to an easily accessible exchange rate API.
+Disclaimer: Towards the end of the project I realized zip codes were not the best method to accurately map data. Going forward, I will use a combination of Federal Information Processing Systems (FIPS) codes and shapefiles in tandem with geopandas.
 
-Disclaimer: No warranties or guarantees - express or implied, regarding exchange rate information returned by our API, its completeness or correctness, its accuracy, or its fitness for any particular purpose.
+## About
+
+
 
 ## Installation
 
