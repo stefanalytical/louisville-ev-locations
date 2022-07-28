@@ -156,14 +156,10 @@ final_df.at[17907,'Zip_Code'] = '40222'
 final_df.at[3819,'Zip_Code'] = '40228'
 
 # Added locations to fill in all zip codes in Louisville
-#final_df = final_df.append(dict(zip(final_df.columns,['Fairdale', '1', '40118', '-85.758855', '38.105069', '35.2', '9724', '46033', '8334', '447624892', '82', '0.01224', 'Medium Income', 'Mid-Aged', 'Large'])), ignore_index=True)
-#final_df = final_df.append(dict(zip(final_df.columns,['Strathmoor Village', '1', '40205', '-85.677800', '38.220800', '41.3', '23678', '67446', '1792', '1596986388', '34', '0.02941', 'High Income', 'Older', 'Medium'])), ignore_index=True)
-#final_df = final_df.append(dict(zip(final_df.columns,['Portland Christian School', '1', '40242', '-85.595482', '38.281155', '38.8', '10930', '63429', '2468', '693278970', '26', '0.03844', 'High Income', 'Mid-Aged', 'Small'])), ignore_index=True)
-#final_df = final_df.append(dict(zip(final_df.columns,['GE Appliance Park', '1', '40225', '-85.649548', '38.175394', '0', '0', '0', '0', '0', '42', '0.02381', 'Low Income', 'Younger', 'Small'])), ignore_index=True)
-
-
-
-
+final_df.loc[len(final_df.index)] = ['Fairdale', '1', '40118', '-85.758855', '38.105069', '35.2', '9724', '46033', '8334', '447624892', '82', '0.01224', 'Medium Income', 'Mid-Aged', 'Large']
+final_df.loc[len(final_df.index)] = ['Strathmoor Village', '1', '40205', '-85.677800', '38.220800', '41.3', '23678', '67446', '1792', '1596986388', '34', '0.02941', 'High Income', 'Older', 'Medium']
+final_df.loc[len(final_df.index)] = ['Portland Christian School', '1', '40242', '-85.595482', '38.281155', '38.8', '10930', '63429', '2468', '693278970', '26', '0.03844', 'High Income', 'Mid-Aged', 'Small']
+final_df.loc[len(final_df.index)] = ['GE Appliance Park', '1', '40225', '-85.649548', '38.175394', '0', '0', '0', '0', '0', '42', '0.02381', 'Low Income', 'Younger', 'Small']
 
 # Rearrange columns to make DataFrame more readable
 final_df = final_df[['Name', 'Num_Votes', 'Zip_Code', 'Longitude', 'Latitude', 'Zip_Age', 
