@@ -43,14 +43,14 @@ or <br />
 or <br />
 `source env/bin/activate`
 
-**Once the virtual environment is activated, please install the project's dependencies found in the requirements.txt folder.**
+3. Once the virtual environment is activated, please install the project's dependencies found in the requirements.txt folder.
 
 ```bash
 pip install -r requirements.txt
 ```
-Run the file
+4. Run the file - This will create a pivot table and 3 pie charts.
 ```bash
-python Conversion.py
+main.py
 ```
 
 **Relevant packages that were used:**
