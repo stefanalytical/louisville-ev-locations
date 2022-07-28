@@ -27,7 +27,7 @@ This project was created using Python 3.10. If you need to download or update Py
 
 To Create the virtual environment:
 
-`python -m venv venv`
+`python -m venv venv` <br />
 or
 `python -m venv env`
 
@@ -35,12 +35,12 @@ To activate the virtual environment:
 
 - Windows:
 `venv/Scripts/Activate`
-or
+or <br />
 `venv\Scripts\Activate` - (Powershell)
 
 - Mac:
 `source venv/bin/activate`
-or
+or <br />
 `source env/bin/activate`
 
 
