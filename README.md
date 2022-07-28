@@ -27,11 +27,22 @@ This project was created using Python 3.10. If you need to download or update Py
 
 To Create the virtual environment:
 
-```bash
-python -m venv venv
+`python -m venv venv`
 or
-python -m venv env
-```
+`python -m venv env`
+
+To activate the virtual environment:
+
+- Windows:
+`venv/Scripts/Activate`
+or
+`venv\Scripts\Activate` - (Powershell)
+
+- Mac:
+`source venv/bin/activate`
+or
+`source env/bin/activate`
+
 
 Once the virtual environment is activated, please install the packages found in the requirements.txt folder.
 
