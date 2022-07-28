@@ -41,7 +41,7 @@ pip install pandas
 pip install myplotlib
 pip install re
 ```
-## Features Used
+## Project Requirements
 
 Category 1: Loading Data:
 ```bash
@@ -56,7 +56,7 @@ Category 2: Clean and Operate the Data While Combining Them:
 
 Category 3: Visualize/Present Your Data:
 ```bash
-- Make a [Tableau dashboard](https://public.tableau.com/app/profile/stefan.vuleta/viz/LouisvilleEVs/Story1?publish=yes) to display your data.
+- Make a [Tableau dashboard](https://public.tableau.com/app/profile/stefan.vuleta/viz/LouisvilleEVs/Story1) to display your data.
 - Make at least 1 Pandas pivot table and 1 matplotlib/seaborn plot.
 ```
 
