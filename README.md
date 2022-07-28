@@ -19,7 +19,11 @@ In the simplest form, this project ingests, analyzes, and displays data. My goal
 
 ## Installation
 
-This project was created using Python 3.10. A virtual environment is required to run the program.
+This project was created using Python 3.10. If you need to download or update Python, you can do so on their [website](https://www.python.org/downloads/).
+
+1. First, clone the repository: [louisville_ev_locations](https://github.com/stefanalytical/louisville_ev_locations.git) and save it to your machine.
+
+2. A virtual environment is required to run the program. Creation and activation will depend on the system you are using. 
 
 First, clone the repository: [https://github.com/stefanalytical/real-time-currency-converter.git](https://github.com/stefanalytical/real-time-currency-converter.git)
 
