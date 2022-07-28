@@ -15,6 +15,7 @@ In the simplest form, this project ingests, analyzes, and displays data. My goal
 2. Did the zip code size, age group, or income group in a zip code affect the number of votes received?
 3. Did the correlation of specific variables in a zip code affect the number of votes?
 4. What were the top 10 zip codes in terms of votes received and did the vehicle theft to votes ratio play a role?
+5. When this data was visualized, what would it look like?
 
 ## Installation
 
@@ -42,32 +43,31 @@ pip install re
 ```
 ## Features Used
 
-Category 1: Python Programming Basics:
+Category 1: Loading Data:
 ```bash
-- Implement a “master loop” console application where the user can repeatedly enter commands/perform actions, including choosing to exit the program.
-- Build a conversion tool that converts user input to another type and displays it (ex: converts cups to grams).	
+- Read TWO data files (CSV).
+- Scrape TWO pieces of data from anywhere on the internet and utilize it in your project.	
 ```
 
-Category 2: Utilize External Data:
+Category 2: Clean and Operate the Data While Combining Them:
 ```bash
-- Read data from an external file, such as text, JSON, CSV, etc, and use that data in your application.
-- Connect to an external/3rd party API and read data into your app
+- Clean your data and perform a pandas merge with your two data sets, then calculate some new values based on the new data set.
 ```
 
-Category 3: Data Display:
+Category 3: Visualize/Present Your Data:
 ```bash
-- Visualize data in a graph, chart, or other visual representation of data.
-- Display data in tabular form
+- Make a [Tableau dashboard](https://public.tableau.com/app/profile/stefan.vuleta/viz/LouisvilleEVs/Story1?publish=yes) to display your data.
+- Make at least 1 Pandas pivot table and 1 matplotlib/seaborn plot.
 ```
 
 Category 4: Best Practices:
 ```bash
-- The program should utilize a virtual environment and document library dependencies in a requirements.txt file.
+- Utilize a virtual environment and include instructions in your README on how the user should set one up.
 ```
 
-Stretch List:
+Interpretation of Your Data:
 ```bash
-- Use pandas, matplotlib, and/or numpy to perform a data analysis project. Ingest 2 or more pieces of data, analyze that data in some manner, and display a new result to a graph, chart, or other display.
+- Annotate your .py files with well-written comments and a clear README.md
 ```
 
 ## Usage
