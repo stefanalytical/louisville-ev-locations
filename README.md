@@ -1,9 +1,17 @@
 # [Louisville EV Charging Locations](https://github.com/stefanalytical/louisville_ev_locations.git)
-- This is a project for Code Louisville Data Analytics Session 2 Fall 2022 -
+This is a project for Code Louisville Data Analytics Session 2 Fall 2022
 
-Disclaimer: Towards the end of the project I realized zip codes were not the best method to accurately map data. Going forward, I will use a combination of Federal Information Processing Systems (FIPS) codes and shapefiles in tandem with geopandas.
+Disclaimer: Towards the end of the project I realized zip codes were not the best method to accurately map data. Going forward, I will use a combination of Federal Information Processing Systems (FIPS) codes and shapefiles in tandem with geopandas and will update this repository.
 
 ## About
+
+As electric vehicles become more common place, the need for charging stations will grow substantially. In late 2017, Louisville Metro crowdsourced data to determine where Louisville Residents wanted EV charging stations most. In total, there were over 200 respondents that helped identify over 150 locations around the city for better EV charging infrastructure. These responses will allow the city to prioritize constructions internally and with third parties.
+
+
+
+
+In Fall 2017, Louisville Metro used crowdsourcing to identify locations in Louisville with the highest demand for EV chargers. Over 200 respondents helped identify dozens of locations around the city where there is a demand for better EV charging infrastructure. Their responses will help determine where to prioritize the construction of new charging stations both internally and with partners.
+
 
 
 
