@@ -3,7 +3,7 @@ import re
 import os
 
 # region - DF1 (CSV)
-# Read in first .CSV file using Pandas
+# Read in first CSV file using Pandas
 df = pd.read_csv('CSVs/louisville_evs.csv')
 
 # Drop rows that are not needed in final merged DataFrame
@@ -26,7 +26,7 @@ df['Name'] = df['Name'].replace(['RIVERVIEW PARK', 'KROGER', 'BECKLEY PARK', 'Be
 # endregion
 
 # region - DF2 (CSV)
-# Read in second .CSV file
+# Read in second CSV file
 df2 = pd.read_csv ('CSVs/crime_data_2021.csv')
 
 # Include only 2 columns relevant to final DataFrame and only include rows with specific string
