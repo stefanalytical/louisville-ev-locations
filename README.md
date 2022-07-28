@@ -10,6 +10,7 @@ As electric vehicles become more common place, the need for charging stations wi
 ## Project Goals
 
 In the simplest form, this project ingests, analyzes, and displays data. My goal was to merge CSV files and to scrape websites to create a new set of data that will give deeper meaning to the residents' votes. This allows one to better understand and visualize the desire for these new locations and to possibly find correlations between various variables. Ultimately, I wanted these questions answered:
+
 1. 
 
 
