@@ -55,12 +55,13 @@ main.py
 5. Running `data_cleanup.py` will update the CSV file in the `clean_data` folder.
 
 **Relevant packages that were used:**
-```bash
+
 - Pandas
 - Matplotlib
-```
+
 ## Visualizations
 
+I created a Tableau dashboard called [Desire for Electrical Vehicle Charging Stations in Louisville, KY](https://public.tableau.com/views/LouisvilleEVs/Story1?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link) that visualizes the merged and cleaned data and then analyzes it.
 
 ## Findings
 
