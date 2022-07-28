@@ -44,31 +44,30 @@ pip install re
 ## Project Requirements
 
 Category 1: Loading Data:
-```bash
+
 - Read TWO data files (CSV).
 - Scrape TWO pieces of data from anywhere on the internet and utilize it in your project.	
-```
 
 Category 2: Clean and Operate the Data While Combining Them:
-```bash
+
 - Clean your data and perform a pandas merge with your two data sets, then calculate some new values based on the new data set.
-```
+
 
 Category 3: Visualize/Present Your Data:
-```bash
+
 - Make a Tableau dashboard to display your data.
 - Make at least 1 Pandas pivot table and 1 matplotlib/seaborn plot.
-```
+
 Category 4: Best Practices:
-```bash
+
 - Utilize a virtual environment and include instructions in your README on how the user should set one up.
 - List dependencies in a requirement.txt file.
-```
+
 
 Interpretation of Your Data:
-```bash
+
 - Annotate your .py files with well-written comments and a clear README.md
-```
+
 
 ## Usage
 
