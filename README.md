@@ -62,6 +62,7 @@ Category 3: Visualize/Present Your Data:
 Category 4: Best Practices:
 ```bash
 - Utilize a virtual environment and include instructions in your README on how the user should set one up.
+- List dependencies in a requirement.txt file.
 ```
 
 Interpretation of Your Data:
