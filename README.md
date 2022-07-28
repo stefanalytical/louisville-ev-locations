@@ -56,7 +56,7 @@ Category 2: Clean and Operate the Data While Combining Them:
 
 Category 3: Visualize/Present Your Data:
 ```bash
-- Make a [Tableau dashboard]([https://public.tableau.com/app/profile/stefan.vuleta/viz/LouisvilleEVs/Story1](https://public.tableau.com/views/LouisvilleEVs/Story1?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link)) to display your data.
+- Make a [Tableau dashboard](https://public.tableau.com/views/LouisvilleEVs/Story1?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link) to display your data.
 - Make at least 1 Pandas pivot table and 1 matplotlib/seaborn plot.
 ```
 
