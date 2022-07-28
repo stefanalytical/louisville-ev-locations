@@ -33,13 +33,13 @@ or
 
 To activate the virtual environment:
 
-- Windows:
-`venv/Scripts/Activate`
+Windows: <br />
+`venv/Scripts/Activate` <br />
 or <br />
 `venv\Scripts\Activate` - (Powershell)
 
-- Mac:
-`source venv/bin/activate`
+Mac: <br />
+`source venv/bin/activate` <br />
 or <br />
 `source env/bin/activate`
 
