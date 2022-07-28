@@ -59,7 +59,6 @@ Category 3: Visualize/Present Your Data:
 - Make a Tableau dashboard to display your data.
 - Make at least 1 Pandas pivot table and 1 matplotlib/seaborn plot.
 ```
-[t](https://public.tableau.com/views/LouisvilleEVs/Story1?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link)
 Category 4: Best Practices:
 ```bash
 - Utilize a virtual environment and include instructions in your README on how the user should set one up.
