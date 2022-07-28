@@ -52,12 +52,15 @@ pip install -r requirements.txt
 ```bash
 main.py
 ```
+5. Running `data_cleanup.py` will update the CSV file in the `clean_data` folder.
 
 **Relevant packages that were used:**
 ```bash
 - Pandas
 - Matplotlib
 ```
+## Visualizations
+
 
 ## Findings
 
@@ -79,7 +82,7 @@ The chart that displays the 15 currencies of higher value than the USD gives a c
 
 **Category 3: Visualize/Present Your Data:**
 
-- Make a Tableau dashboard to display your data.
+- Make a [Tableau dashboard](https://public.tableau.com/views/LouisvilleEVs/Story1?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link) to display your data.
 - Make at least 1 Pandas pivot table and 1 matplotlib/seaborn plot.
 
 **Category 4: Best Practices:**
