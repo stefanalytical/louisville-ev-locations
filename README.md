@@ -12,7 +12,7 @@ As electric vehicles become more common place, the need for charging stations wi
 In the simplest form, this project ingests, analyzes, and displays data. My goal was to merge CSV files and to scrape websites to create a new set of data that will give deeper meaning to the residents' votes. This allows one to better understand and visualize the desire for these new locations and to possibly find correlations between various variables. Ultimately, I wanted these questions answered:
 
 1. Did any zip codes receive substantially more than others?
-2. Did the vehicle thefts per zip code, age group, and income group in a zip code affect the number of votes received?
+2. Did the zip code population size, age group, and income group in a zip code affect the number of votes received?
 3. Did the correlation of specific variables in a zip code affect the number of votes?
 4. What were the top 10 zip codes in terms of votes received and did the vehicle theft to votes ratio play a role?
 5. When this data was visualized, what would it look like?
@@ -90,25 +90,24 @@ I created a Tableau story called [Desire for Electrical Vehicle Charging Station
 I analyzed the data and visualizations on my Tableau story found in the link above. In this section I will discuss the pie charts, pivot table, and the questions I asked in the **Project Goals** section. Based on the income group pie chart, both medium-income (Annual income between $20000 and $50000) and high-income (Annual income over $50000) zip codes accounted equally for the percentage of the votes (40.2% and 41.5% respectively). There are substantially less votes for locations in low-income areas. When looking at the pie chart dealing with age groups, it becomes clear that the majority of votes were located in mid-aged (Ages between 35 and 40) zip codes even though that group had the smallest range compared to the younger group (Under 35) and the older group (Over 40). The mid-aged zip codes seemingly have enough money for electric vehicles while also displaying interest in innovative technologies. Lastly, the pie chart displaying the percentage of votes based on zip code sizes is almost evenly split three ways. The small group (Under 15k residents) makes up 27.2%, the medium group (Between 15k and 30k residents) makes up 39.2%, and the large group (Over 30k residents) makes up 33.6%. It is safe to assume that zip code population size did not have an effect on the number of votes received. The created pivot table allows for a quick drill-down to see how votes are distributed. The aggregated vote values become smaller toward the bottom of the table.
 
 1. _Did any zip codes receive substantially more than others?_
-```bash
-40207 and 40202 had 52 and 49 votes respectively. This makes up 27% of the total votes received. The next zip code with the most votes, 40205, had 33 votes.
-```
-2. _Did the vehicles thefts per zip code, age group, and income group in a zip code affect the number of votes received?_
-```bash
-TEXT
-```
+
+- 40207 and 40202 had 52 and 49 votes respectively. This makes up 27% of the total votes received. The next zip code with the most votes, 40205, had 33 votes.
+
+2. _Did the vehicles zip code population size, age group, and income group in a zip code affect the number of votes received?_
+
+- This question was answered in detail in the paragraph above under Findings.
+
 3. _Did the correlation of specific variables in a zip code affect the number of votes?_
-```bash
-TEXT
-```
+
+- The relationship between the vehicle thefts per zip and zip income variables was highly statistically significant but had a low or weak effect size. 30% of the variation of one variable was completely explained by the other. On the other hand, the relationship between the zip code age and zip code income variables had a moderate effect size, with 53% of the variation of one variable being completely explained by the other. This correlation is also highly statistically relevant with a (p<.0001) value.
+
 4. _What were the top 10 zip codes in terms of votes received and did the vehicle theft to votes ratio play a role?_
-```bash
-TEXT
-```
+
+- In order from most voted received to least: 40207, 40202, 40205, 40206, 40203, 40204, 40222, 40241, 40219, 40213. When I calculated the top ten zip codes with the best theft to votes ratios, with the highest ratio being the most ideal, I found that all ten zip codes with the most votes could also be found in the top ten best ratio group. This can be seen in greater detail on the last dashboard in my Tableau story.
+
 5. _When this data was visualized, what would it look like?_
-```bash
-TEXT
-```
+
+- When looking at the visualized data, it quickly becomes clear that the majority of votes for locations are concentrated inside the I-264. 65% of votes are located in this area. 41% of votes are located in zip codes that border the Ohio River.
 
 
 ## Project Requirements
