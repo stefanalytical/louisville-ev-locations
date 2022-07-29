@@ -19,9 +19,15 @@ In the simplest form, this project ingests, analyzes, and displays data. My goal
 
 ## Data Sources
 
+CSVs:
 
+- `[crime_data_2021.csv](https://github.com/stefanalytical/louisville_ev_locations/blob/master/CSVs/crime_data_2021.csv)`
+- `[louisville_evs.csv](https://github.com/stefanalytical/louisville_ev_locations/blob/master/CSVs/louisville_evs.csv)`
 
+Scraping:
 
+- `[Zipatlas.com](http://zipatlas.com/us/ky/louisville/zip-code-comparison/median-household-income.htm)`
+- `[Localistica.com](https://localistica.com/usa/ky/louisville/zipcodes/highest-household-income-zipcodes/)`
 
 ## Installation
 
