@@ -21,8 +21,8 @@ In the simplest form, this project ingests, analyzes, and displays data. My goal
 
 CSVs:
 
-- `[crime_data_2021.csv](https://github.com/stefanalytical/louisville_ev_locations/blob/master/CSVs/crime_data_2021.csv)`
-- `[louisville_evs.csv](https://github.com/stefanalytical/louisville_ev_locations/blob/master/CSVs/louisville_evs.csv)`
+- [crime_data_2021.csv](https://github.com/stefanalytical/louisville_ev_locations/blob/master/CSVs/crime_data_2021.csv)
+- [louisville_evs.csv](https://github.com/stefanalytical/louisville_ev_locations/blob/master/CSVs/louisville_evs.csv)
 
 Scraping:
 
@@ -87,9 +87,10 @@ I created a Tableau story called [Desire for Electrical Vehicle Charging Station
 
 ## Findings
 
-The data used in the analysis is updated to reflect the latest prices for each currency. The conversion tool can take the data from the API and allow you to manipulate it to compare the value of currencies around the world.
+I analyzed the data and visualizations on my Tableau story found in the link above. In this section I will discuss the pie charts, pivot table, and the questions I asked in the **Project Goals** section. Based on the income group pie chart, both medium-income (Annual income between $20000 and $50000) and high-income (Annual income over $50000) zip codes accounted equally for the percentage of the votes (40.2% and 41.5% respectively). There are substantially less votes for locations in low-income areas. When looking at the pie chart dealing with age groups, it becomes clear that the majority of votes were located in mid-aged (Ages between 35 and 40) zip codes even though that group had the smallest range compared to the younger group (Under 35) and the older group (Over 40). The mid-aged zip codes seemingly have enough money for electric vehicles while also displaying interest in innovative technologies. Lastly, the pie chart displaying the percentage of votes based on zip code sizes is almost evenly split three ways. The small group (Under 15k residents) makes up 27.2%, the medium group (Between 15k and 30k residents) makes up 39.2%, and the large group (Over 30k residents) makes up 33.6%. It is safe to assume that zip code population size did not have an effect on the number of votes received.
 
-The chart that displays the 15 currencies of higher value than the USD gives a clear picture in terms of US buying power eslewhere. By using pandas and myplotlib, I was able to retrieve the JSON data and graph this visual. I was rather surprised that so many currencies were currently of higher value than the USD, with the Kuwaiti Dinar being the most expensive.
+
+
 
 ## Project Requirements
 
