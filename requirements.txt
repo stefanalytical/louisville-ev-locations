@@ -4,6 +4,7 @@ cycler==0.11.0
 fonttools==4.34.4
 idna==3.3
 kiwisolver==1.4.4
+lxml==4.9.1
 matplotlib==3.5.2
 packaging==21.3
 pandas==1.4.3
