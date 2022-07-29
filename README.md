@@ -37,7 +37,7 @@ This project was created using Python 3.10. If you need to download or update Py
 
 2. A virtual environment is required to run the program. Creation and activation will depend on the system you are using. Using the command prompt:
 
-**To Create the virtual environment:**
+**To create the virtual environment:**
 
 `python -m venv venv` <br />
 or <br />
