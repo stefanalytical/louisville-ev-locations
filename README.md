@@ -33,7 +33,7 @@ Scraping:
 
 This project was created using Python 3.10. If you need to download or update Python, you can do so on their [website](https://www.python.org/downloads/).
 
-1. First, clone the repository: [louisville_ev_locations](https://github.com/stefanalytical/louisville_ev_locations.git) and save it to your machine using the command prompt. Navigate to the[louisville_ev_locations](https://github.com/stefanalytical/louisville_ev_locations.git) directory.
+1. First, clone the repository: [louisville_ev_locations](https://github.com/stefanalytical/louisville_ev_locations.git) and save it to your machine using the command prompt. Navigate to the [louisville_ev_locations](https://github.com/stefanalytical/louisville_ev_locations.git) directory.
 
 2. A virtual environment is required to run the program. Creation and activation will depend on the system you are using. Using the command prompt:
 
