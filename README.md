@@ -3,7 +3,7 @@ _**This is a project for Code Louisville Data Analytics Session 2 Fall 2022**_
 
 **Disclaimer**: Towards the end of the project I realized zip codes were not the best method to accurately map data. Going forward, I will use a combination of Federal Information Processing Systems (FIPS) codes and shapefiles in tandem with geopandas and will update this repository.
 
-**This dataset was published to [Kaggle](https://www.kaggle.com/datasets/stefanalyst/louisville-ky-ev-locations?utm_medium=social&utm_campaign=kaggle-dataset) with a usability score of 10.0.**
+**This dataset was published to [Kaggle](https://www.kaggle.com/datasets/stefanalyst/louisville-ky-ev-locations?utm_medium=social&utm_campaign=kaggle-dataset) with a usability score of 10.0, the highest score.**
 
 ## About
 
@@ -85,7 +85,7 @@ main.py
 
 ## Visualizations
 
-I created a Tableau story called [Desire for Electrical Vehicle Charging Stations in Louisville, KY](https://public.tableau.com/views/LouisvilleEVs/Story1?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link) that visualizes the merged and cleaned data and then analyzes it. Two CSV files and data scraped from two websites are ingested and cleaned by `data_cleanup.py`, and are then saved to the `clean_data` folder. This is the text file used to create the story.
+I created a Tableau story called [Desire for Electric Vehicle Charging Stations in Louisville, KY](https://public.tableau.com/views/LouisvilleEVs/Story1?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link) that visualizes the merged and cleaned data and then analyzes it. Two CSV files and data scraped from two websites are ingested and cleaned by `data_cleanup.py`, and are then saved to the `clean_data` folder. This is the text file used to create the story.
 
 ## Findings
 
