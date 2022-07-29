@@ -17,11 +17,17 @@ In the simplest form, this project ingests, analyzes, and displays data. My goal
 4. What were the top 10 zip codes in terms of votes received and did the vehicle theft to votes ratio play a role?
 5. When this data was visualized, what would it look like?
 
+## Data Sources
+
+
+
+
+
 ## Installation
 
 This project was created using Python 3.10. If you need to download or update Python, you can do so on their [website](https://www.python.org/downloads/).
 
-1. First, clone the repository: [louisville_ev_locations](https://github.com/stefanalytical/louisville_ev_locations.git) and save it to your machine using the command prompt. Navigate to [louisville_ev_locations](https://github.com/stefanalytical/louisville_ev_locations.git) directory.
+1. First, clone the repository: [louisville_ev_locations](https://github.com/stefanalytical/louisville_ev_locations.git) and save it to your machine using the command prompt. Navigate to the[louisville_ev_locations](https://github.com/stefanalytical/louisville_ev_locations.git) directory.
 
 2. A virtual environment is required to run the program. Creation and activation will depend on the system you are using. Using the command prompt:
 
@@ -52,6 +58,10 @@ pip install -r requirements.txt
 ```bash
 main.py
 ```
+<img src="./PC1.png" alt="Getting started" width="600" height="400"/>
+<img src="./PC2.png" alt="Getting started" width="600" height="400"/>
+<img src="./PC3.png" alt="Getting started" width="600" height="400"/>
+
 5. Running `data_cleanup.py` will update the CSV file in the `clean_data` folder.
 
 **Relevant packages that were used:**
@@ -61,7 +71,7 @@ main.py
 
 ## Visualizations
 
-I created a Tableau dashboard called [Desire for Electrical Vehicle Charging Stations in Louisville, KY](https://public.tableau.com/views/LouisvilleEVs/Story1?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link) that visualizes the merged and cleaned data and then analyzes it.
+I created a Tableau story called [Desire for Electrical Vehicle Charging Stations in Louisville, KY](https://public.tableau.com/views/LouisvilleEVs/Story1?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link) that visualizes the merged and cleaned data and then analyzes it.
 
 ## Findings
 
