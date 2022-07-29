@@ -58,9 +58,9 @@ pip install -r requirements.txt
 ```bash
 main.py
 ```
-<img src="./PC1.png" alt="Getting started" width="600" height="400"/>
-<img src="./PC2.png" alt="Getting started" width="600" height="400"/>
-<img src="./PC3.png" alt="Getting started" width="600" height="400"/>
+<img src="./PNGs/PC1.png" alt="Getting started" width="600" height="400"/>
+<img src="./PNGSs/PC2.png" alt="Getting started" width="600" height="400"/>
+<img src="./PNGSs/PC3.png" alt="Getting started" width="600" height="400"/>
 
 5. Running `data_cleanup.py` will update the CSV file in the `clean_data` folder.
 
