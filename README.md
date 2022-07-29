@@ -95,7 +95,7 @@ I analyzed the data and visualizations on my Tableau story found in the link abo
 
 - 40207 and 40202 had 52 and 49 votes respectively. This makes up 27% of the total votes received. The next zip code with the most votes, 40205, had 33 votes.
 
-2. **_Did the vehicles zip code population size, age group, and income group in a zip code affect the number of votes received?_**
+2. **_Did the zip code population size, age group, and income group in a zip code affect the number of votes received?_**
 
 - This question was answered in detail in the paragraph above under Findings.
 
@@ -105,7 +105,7 @@ I analyzed the data and visualizations on my Tableau story found in the link abo
 
 4. **_What were the top 10 zip codes in terms of votes received and did the vehicle theft to votes ratio play a role?_**
 
-- In order from most voted received to least: 40207, 40202, 40205, 40206, 40203, 40204, 40222, 40241, 40219, 40213. When I calculated the top ten zip codes with the best theft to votes ratios, with the highest ratio being the most ideal, I found that all ten zip codes with the most votes could also be found in the top ten best ratio group. This can be seen in greater detail on the last dashboard in my Tableau story.
+- In order from most votes received to least: 40207, 40202, 40205, 40206, 40203, 40204, 40222, 40241, 40219, 40213. When I calculated the top ten zip codes with the best theft to votes ratios, with the highest ratio being the most ideal, I found that all ten zip codes with the most votes could also be found in the top ten best ratio group. This can be seen in greater detail on the last dashboard in my Tableau story.
 
 5. **_When this data was visualized, what would it look like?_**
 
