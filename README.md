@@ -61,12 +61,13 @@ main.py
 <p float = "center">
   <img src="./PNGs/PC1.png" alt="Getting started" width="250" height="200"/>
   <img src="./PNGs/PC2.png" alt="Getting started" width="250" height="200"/>
-  <img src="./PNGs/PivotTable.png" alt="Getting started" width="250" height="200"/>
+  <img src="./PNGs/PC3.png" alt="Getting started" width="250" height="200"/>
 </p>
 
 <p float = "left">
-  <img src="./PNGs/PC1.png" alt="Getting started" width="250" height="200"/>
+  <img src="./PNGs/PivotTable.png" alt="Getting started" width="250" height="200"/>
 </p>
+
 5. Running `data_cleanup.py` will update the CSV file in the `clean_data` folder.
 
 **Relevant packages that were used:**
