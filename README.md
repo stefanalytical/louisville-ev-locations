@@ -26,8 +26,8 @@ CSVs:
 
 Scraping:
 
-- `[Zipatlas.com](http://zipatlas.com/us/ky/louisville/zip-code-comparison/median-household-income.htm)`
-- `[Localistica.com](https://localistica.com/usa/ky/louisville/zipcodes/highest-household-income-zipcodes/)`
+- [Zipatlas.com](http://zipatlas.com/us/ky/louisville/zip-code-comparison/median-household-income.htm)
+- [Localistica.com](https://localistica.com/usa/ky/louisville/zipcodes/highest-household-income-zipcodes/)
 
 ## Installation
 
