@@ -41,18 +41,18 @@ This project was created using Python 3.10. If you need to download or update Py
 
 **To create the virtual environment:**
 
-`python -m venv venv` <br />
+`python -m venv venv` or `python3 -m venv venv` <br />
 or <br />
-`python -m venv env`
+`python -m venv env` or `python3 -m venv env`
 
 **To activate the virtual environment:**
 
-**Windows:** <br />
+Windows: <br />
 <br />`venv/Scripts/Activate` <br />
 or <br />
 `venv\Scripts\Activate` - (Powershell)
 
-**Mac:** <br />
+Mac: <br />
 <br />`source venv/bin/activate` <br />
 or <br />
 `source env/bin/activate`
@@ -62,6 +62,11 @@ or <br />
 ```bash
 pip install -r requirements.txt
 ```
+or
+```bash
+pip3 install -r requirements.txt
+```
+
 4. Run the file - This will create a pivot table and 3 pie charts.
 ```bash
 main.py
