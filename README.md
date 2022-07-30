@@ -1,7 +1,7 @@
 # [Louisville EV Charging Locations](https://github.com/stefanalytical/louisville_ev_locations.git)
 _**This is a project for Code Louisville Data Analytics Session 2 2022**_
 
-**Disclaimer**: Towards the end of the project I realized zip codes were not the best method to accurately map data. Going forward, I will use a combination of Federal Information Processing Systems (FIPS) codes and shapefiles in tandem with geopandas and will update this repository.
+**Disclaimer**: Towards the end of the project I realized zip codes were not the best method to accurately map data. Going forward, I will use a combination of Federal Information Processing Systems (FIPS) codes and shapefiles and will update this repository.
 
 **This dataset was published to [Kaggle](https://www.kaggle.com/datasets/stefanalyst/louisville-ky-ev-locations?utm_medium=social&utm_campaign=kaggle-dataset) with a usability score of 10.0, the highest score.**
 
